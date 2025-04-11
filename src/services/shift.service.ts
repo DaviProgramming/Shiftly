@@ -7,13 +7,17 @@ import TimeEntryRepository from '@/repositories/time-entry.repository';
 export class ShiftService {
   async startShift(userId: string, data?: Partial<TimeEntryInput>) {
     const user = await UserRepository.findById(userId);
+
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
     }
 
     const lastEntry = await TimeEntryRepository.getLastByUserId(userId);
+
     if (lastEntry && lastEntry.type === EntryType.CHECK_IN) {
-      throw new BadRequestError('Já existe um turno em andamento. Finalize o turno atual antes de iniciar um novo.');
+      throw new BadRequestError(
+        'Já existe um turno em andamento. Finalize o turno atual antes de iniciar um novo.'
+      );
     }
 
     const entry = await TimeEntryRepository.create({
@@ -21,7 +25,7 @@ export class ShiftService {
       type: EntryType.CHECK_IN,
       timestamp: data?.timestamp || new Date(),
       latitude: data?.latitude,
-      longitude: data?.longitude
+      longitude: data?.longitude,
     });
 
     return entry;
@@ -29,6 +33,7 @@ export class ShiftService {
 
   async endShift(userId: string, data?: Partial<TimeEntryInput>) {
     const user = await UserRepository.findById(userId);
+
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
     }
@@ -43,7 +48,7 @@ export class ShiftService {
       type: EntryType.CHECK_OUT,
       timestamp: data?.timestamp || new Date(),
       latitude: data?.latitude,
-      longitude: data?.longitude
+      longitude: data?.longitude,
     });
 
     return entry;
@@ -54,9 +59,9 @@ export class ShiftService {
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
     }
-    
+
     const lastEntry = await TimeEntryRepository.getLastByUserId(userId);
-    
+
     if (!lastEntry || lastEntry.type === EntryType.CHECK_OUT) {
       return null;
     }
@@ -64,7 +69,7 @@ export class ShiftService {
     return {
       entry: lastEntry,
       startedAt: lastEntry.timestamp,
-      isActive: true
+      isActive: true,
     };
   }
 

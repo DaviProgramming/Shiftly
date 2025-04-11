@@ -7,29 +7,21 @@ import { shiftValidationSchema } from '@validations/shift.validation';
 const router = Router();
 
 router.post(
-  '/start', 
-  authMiddleware, 
+  '/start',
+  authMiddleware,
   validateRequest(shiftValidationSchema),
   ShiftController.startShift
 );
 
 router.post(
-  '/end', 
-  authMiddleware, 
+  '/end',
+  authMiddleware,
   validateRequest(shiftValidationSchema),
   ShiftController.endShift
 );
 
-router.get(
-  '/current',
-  authMiddleware,
-  ShiftController.getCurrentShift
-);
+router.get('/current', authMiddleware, ShiftController.getCurrentShift);
 
-router.get(
-  '/history',
-  authMiddleware,
-  ShiftController.getShiftHistory
-);
+router.get('/history', authMiddleware, ShiftController.getShiftHistory);
 
-export default router; 
+export default router;

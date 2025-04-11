@@ -15,7 +15,8 @@ export class TimeEntryRepository {
   }
 
   async getLastByUserId(userId: string) {
-    const [lastEntry] = await db.select()
+    const [lastEntry] = await db
+      .select()
       .from(timeEntries)
       .where(eq(timeEntries.user_id, userId))
       .orderBy(desc(timeEntries.timestamp))
@@ -25,7 +26,8 @@ export class TimeEntryRepository {
   }
 
   async getUserShiftHistory(userId: string, limit = 10, offset = 0) {
-    const entries = await db.select()
+    const entries = await db
+      .select()
       .from(timeEntries)
       .where(eq(timeEntries.user_id, userId))
       .orderBy(desc(timeEntries.timestamp))
@@ -36,4 +38,4 @@ export class TimeEntryRepository {
   }
 }
 
-export default new TimeEntryRepository(); 
+export default new TimeEntryRepository();

@@ -7,6 +7,6 @@ export const apiLimiter = rateLimit({
   legacyHeaders: false,
   message: {
     message: 'Muitas requisições. Tente novamente mais tarde.',
-    status: 'error'
-  }
+    status: 'error',
+  },
 });

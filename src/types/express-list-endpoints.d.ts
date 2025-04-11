@@ -8,6 +8,6 @@ declare module 'express-list-endpoints' {
   }
 
   function listEndpoints(app: Express): Endpoint[];
-  
+
   export = listEndpoints;
-} 
+}
