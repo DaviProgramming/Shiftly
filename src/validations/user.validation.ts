@@ -6,7 +6,7 @@ export const createUserSchema = z.object({
       .string({ required_error: 'Nome é obrigatório' })
       .min(3, 'Nome deve ter no mínimo 3 caracteres'),
     email: z.string({ required_error: 'Email é obrigatório' }).email('Email inválido'),
-    password_hash: z
+    password: z
       .string({ required_error: 'Senha é obrigatória' })
       .min(6, 'Senha deve ter no mínimo 6 caracteres'),
     role: z.string({ required_error: 'Função é obrigatória' }).default('employee'),
