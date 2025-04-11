@@ -2,7 +2,7 @@ import express, { ErrorRequestHandler, RequestHandler } from 'express';
 import routes from '@/routes/routes';
 import { errorHandler, notFoundHandler } from '@/middlewares/error-handler.middleware';
 import appConfig from '@/configs/app.config';
-import { logger } from '@/utils/logger';
+import { logger } from '@/utils/logger.utils';
 
 const app = express();
 
