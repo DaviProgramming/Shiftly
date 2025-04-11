@@ -12,7 +12,11 @@ router.post(
   AuthController.register
 );
 
-router.post('/login', validateRequest(loginSchema) as RequestHandler, AuthController.login);
+router.post(
+  '/login', 
+  validateRequest(loginSchema) as RequestHandler, 
+  AuthController.login
+);
 
 router.get('/me', authMiddleware, AuthController.me);
 

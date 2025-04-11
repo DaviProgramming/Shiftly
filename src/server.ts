@@ -3,10 +3,13 @@ import routes from '@/routes/routes';
 import { errorHandler, notFoundHandler } from '@/middlewares/error-handler.middleware';
 import appConfig from '@/configs/app.config';
 import { logger } from '@/utils/logger.utils';
+import { apiLimiter } from '@/middlewares/rate-limit.middleware';
 
 const app = express();
 
 app.use(express.json());
+
+app.use(apiLimiter);
 
 app.use(routes);
 
