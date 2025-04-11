@@ -1,0 +1,21 @@
+{
+  "name": "shiftly",
+  "version": "1.0.0",
+  "description": "**Shiftly** é um sistema de controle de ponto completo (check-in/check-out), desenvolvido com **TypeScript** e **Express.js**, focado em gestão de presença de funcionários, geração de relatórios e funcionalidades administrativas.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
