@@ -3,6 +3,7 @@ import { RequestHandler } from 'express';
 import ShiftService from '@/services/shift.service';
 import StatusCode from '@/constants/status-code.constants';
 import { TimeEntryInput } from '@/types/times-entries.types';
+import { formatTimeEntry } from '@/resources/time-entry.resource';
 
 export class ShiftController {
   startShift: RequestHandler = catchAsync(async (req, res) => {
@@ -11,9 +12,9 @@ export class ShiftController {
 
     const timeEntry = await ShiftService.startShift(userId, data);
 
-    res.status(StatusCode.CREATED).json({
+    res.status(StatusCode.OK).json({
       message: 'Início de turno registrado com sucesso',
-      data: timeEntry,
+      data: formatTimeEntry(timeEntry),
     });
   });
 
@@ -25,7 +26,7 @@ export class ShiftController {
 
     res.status(StatusCode.OK).json({
       message: 'Fim de turno registrado com sucesso',
-      data: timeEntry,
+      data: formatTimeEntry(timeEntry),
     });
   });
 
@@ -44,7 +45,7 @@ export class ShiftController {
 
     res.status(StatusCode.OK).json({
       message: 'Turno em andamento encontrado',
-      data: currentShift,
+      data: formatTimeEntry(currentShift.entry),
     });
   });
 
@@ -57,7 +58,7 @@ export class ShiftController {
 
     res.status(StatusCode.OK).json({
       message: 'Histórico de turnos recuperado com sucesso',
-      data: history,
+      data: history.map(formatTimeEntry),
     });
   });
 }
