@@ -252,6 +252,13 @@
   resolved "https://registry.npmjs.org/@types/estree/-/estree-1.0.7.tgz"
   integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
 
+"@types/express-list-endpoints@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/@types/express-list-endpoints/-/express-list-endpoints-7.1.0.tgz"
+  integrity sha512-odaxFluLo1cH9w/8xdLoWbYUCNVabujc4PeDxoRVido8H5wDzxiqG5g46sRmvuaa5ccpcv6gYS66S1yfr+jrxg==
+  dependencies:
+    express-list-endpoints "*"
+
 "@types/express-serve-static-core@^5.0.0":
   version "5.0.6"
   resolved "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-5.0.6.tgz"
@@ -1041,6 +1048,16 @@ etag@^1.8.1:
   version "1.8.1"
   resolved "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
+
+express-list-endpoints@*, express-list-endpoints@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.npmjs.org/express-list-endpoints/-/express-list-endpoints-7.1.1.tgz"
+  integrity sha512-SA6YHH1r6DrioJ4fFJNqiwu1FweGFqJZO9KBApMzwPosoSGPOX2AW0wiMepOXjojjEXDuP9whIvckomheErbJA==
+
+express-list-routes@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/express-list-routes/-/express-list-routes-1.2.4.tgz"
+  integrity sha512-4XA8l81UA0ZGzh9MO0sj4lUvWmxwSBubg3Ywyq6DJtMUtpmAkNGV3Cnue7SKHdHUaFz3tXgUJ46nwopB4C4voQ==
 
 express-rate-limit@^7.5.0:
   version "7.5.0"
