@@ -4,9 +4,9 @@ import bcrypt from 'bcrypt';
 
 export class AuthService {
   async register(user: UserRegistration) {
-    const passwordHash = await bcrypt.hash(user.password_hash, 10);
+    const passwordHash = await bcrypt.hash(user.password, 10);
 
-    const newUser = await UserRepository.create(user);
+    const newUser = await UserRepository.create({ ...user, password_hash: passwordHash });
 
     return newUser;
   }

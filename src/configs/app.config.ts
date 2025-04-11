@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const createDatabaseUrl = (): string => {
-  const host = process.env.DB_HOST || 'localhost';
-  const port = process.env.DB_PORT || '5432';
-  const user = process.env.DB_USER || 'postgres';
-  const password = process.env.DB_PASSWORD || 'senha';
-  const database = process.env.DB_NAME || 'shiftly';
+  const host = process.env.DATABASE_HOST || 'localhost';
+  const port = process.env.DATABASE_PORT || '5432';
+  const user = process.env.DATABASE_USER || 'postgres';
+  const password = process.env.DATABASE_PASSWORD || 'senha';
+  const database = process.env.DATABASE_NAME || 'shiftly';
 
   return `postgresql://${user}:${password}@${host}:${port}/${database}`;
 };
