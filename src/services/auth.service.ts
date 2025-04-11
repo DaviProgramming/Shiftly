@@ -1,4 +1,4 @@
-import { UserRegistration, UserLogin} from '@/types/user.types';
+import { UserRegistration, UserLogin } from '@/types/user.types';
 import UserRepository from '@/repositories/user.repository';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
