@@ -28,6 +28,15 @@ export class AuthController {
       data: UserResource.toJSON(newUser),
     });
   });
+
+  me: RequestHandler = catchAsync(async (req, res) => {
+    const user = await AuthService.me(req.userId);
+
+    res.status(StatusCode.OK).json({
+      message: 'User found successfully',
+      data: UserResource.toJSON(user),
+    });
+  });
 }
 
 export default new AuthController();

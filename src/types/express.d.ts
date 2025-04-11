@@ -1,7 +1,9 @@
-import { Request as ExpressRequest } from 'express';
+import { Request } from 'express';
 
-declare module 'express' {
-  interface Request extends ExpressRequest {
-    userId: string;
+declare global {
+  namespace Express {
+    interface Request {
+      userId: string;
+    }
   }
-}
+} 

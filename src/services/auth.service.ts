@@ -31,6 +31,16 @@ export class AuthService {
 
     return newUser;
   }
+
+  async me(userId: string) {
+    const user = await UserRepository.findById(userId);
+
+    if (!user) {
+      throw new NotFoundError('User not found');
+    }
+
+    return user;
+  }
 }
 
 export default new AuthService();
