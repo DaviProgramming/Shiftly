@@ -18,7 +18,7 @@ export const updateUserSchema = createUserSchema.partial();
 export const loginSchema = z.object({
   body: z.object({
     email: z.string({ required_error: 'Email é obrigatório' }).email('Email inválido'),
-    password_hash: z
+    password: z
       .string({ required_error: 'Senha é obrigatória' })
       .min(6, 'Senha deve ter no mínimo 6 caracteres'),
   }),

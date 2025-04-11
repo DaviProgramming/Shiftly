@@ -1,11 +1,23 @@
 import { catchAsync } from '@/utils/catch-async.utils';
 import { RequestHandler } from 'express';
-import { UserRegistration } from '@/types/user.types';
+import { UserRegistration, UserLogin } from '@/types/user.types';
 import AuthService from '@/services/auth.service';
 import StatusCode from '@/constants/status-code.constants';
 import { UserResource } from '@/resources/user.resource';
 
 export class AuthController {
+  login: RequestHandler = catchAsync(async (req, res) => {
+    const user: UserLogin = req.body;
+
+    const userLoged = await AuthService.login(user);
+
+    res.status(StatusCode.OK).json({
+      message: 'User logged in successfully',
+      data: UserResource.toJSON(userLoged.user),
+      token: userLoged.token,
+    });
+  });
+
   register: RequestHandler = catchAsync(async (req, res) => {
     const user: UserRegistration = req.body;
 
