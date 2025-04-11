@@ -4,9 +4,7 @@ import { Roles } from '@enums/roles.enum';
 
 export type User = InferSelectModel<typeof users>;
 
-
 export type NewUser = InferInsertModel<typeof users>;
-
 
 export type SafeUser = Omit<User, 'password_hash'>;
 
