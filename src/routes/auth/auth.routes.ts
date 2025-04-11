@@ -1,13 +1,14 @@
-import { Router, Request, Response } from 'express';
+import { Router, RequestHandler } from 'express';
+import AuthController from '@/controllers/auth/auth.controller';
+import { validateRequest } from '@/middlewares/validate-request.middleware';
+import { createUserSchema } from '@/validations/user.validation';
 
 const router = Router();
 
-router.post('/login', (req: Request, res: Response) => {
-  res.send('Hello World');
-});
-
-router.post('/register', (req: Request, res: Response) => {
-  res.send('Hello World');
-});
+router.post(
+  '/register',
+  validateRequest(createUserSchema) as RequestHandler,
+  AuthController.register
+);
 
 export default router;

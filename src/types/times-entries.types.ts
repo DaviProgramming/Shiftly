@@ -19,4 +19,4 @@ export type TimeEntryWithUser = TimeEntry & {
     email: string;
     role: string;
   };
-}; 
+};

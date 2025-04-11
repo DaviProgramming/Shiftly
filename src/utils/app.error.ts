@@ -10,7 +10,7 @@ export class AppError extends Error {
     this.statusCode = statusCode;
     this.errors = errors;
 
-    if(appConfig.nodeEnv !== Environment.PRODUCTION) {
+    if (appConfig.nodeEnv !== Environment.PRODUCTION) {
       Error.captureStackTrace(this, this.constructor);
       Object.setPrototypeOf(this, AppError.prototype);
     }
@@ -51,4 +51,4 @@ export class ConflictError extends AppError {
   constructor(message: string = 'Recurso já existe') {
     super(message, 409);
   }
-} 
+}

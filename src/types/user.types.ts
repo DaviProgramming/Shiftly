@@ -16,6 +16,6 @@ export type UserLogin = {
 export type UserRegistration = {
   name: string;
   email: string;
-  password: string;
-  role?: Roles;
+  password_hash: string;
+  role: Roles;
 };

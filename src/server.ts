@@ -1,6 +1,8 @@
 import express, { ErrorRequestHandler, RequestHandler } from 'express';
 import routes from '@/routes/routes';
 import { errorHandler, notFoundHandler } from '@/middlewares/error-handler.middleware';
+import appConfig from '@/configs/app.config';
+import { logger } from '@/utils/logger';
 
 const app = express();
 
@@ -12,4 +14,8 @@ app.use(notFoundHandler as RequestHandler);
 
 app.use(errorHandler as ErrorRequestHandler);
 
-app.listen(3333, () => 'server running on port 3333');
+app.listen(appConfig.port, () => {
+  logger.info('🚀 Servidor iniciado com sucesso!');
+  logger.info(`📡 URL: http://localhost:${appConfig.port}`);
+  logger.info(`⏰ Iniciado em: ${new Date().toLocaleString()}`);
+});

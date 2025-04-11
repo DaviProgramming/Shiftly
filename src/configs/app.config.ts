@@ -8,7 +8,7 @@ const createDatabaseUrl = (): string => {
   const user = process.env.DB_USER || 'postgres';
   const password = process.env.DB_PASSWORD || 'senha';
   const database = process.env.DB_NAME || 'shiftly';
-    
+
   return `postgresql://${user}:${password}@${host}:${port}/${database}`;
 };
 
