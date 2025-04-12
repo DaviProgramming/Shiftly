@@ -28,7 +28,7 @@ export interface MonthlyReport {
   daysAbsent: number;
   totalDaysInMonth: number;
   dailySummaries: DaySummary[];
-} 
+}
 
 export interface DailyTimeRecord {
   day: string;

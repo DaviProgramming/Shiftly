@@ -29,22 +29,26 @@ export function formatTimeEntry(entry: typeof timeEntries.$inferSelect): TimeEnt
   return resource;
 }
 
-export function formatTimeEntries(entries: (typeof timeEntries.$inferSelect)[]): TimeEntryResource[] {
+export function formatTimeEntries(
+  entries: (typeof timeEntries.$inferSelect)[]
+): TimeEntryResource[] {
   return entries.map(formatTimeEntry);
 }
 
-export function formatTimeEntryWithUser(entry: typeof timeEntries.$inferSelect & { user?: { name: string; email: string } }): TimeEntryResource & { user?: { name: string; email: string } } {
+export function formatTimeEntryWithUser(
+  entry: typeof timeEntries.$inferSelect & { user?: { name: string; email: string } }
+): TimeEntryResource & { user?: { name: string; email: string } } {
   const formattedEntry = formatTimeEntry(entry);
-  
+
   if (entry.user) {
     return {
       ...formattedEntry,
       user: {
         name: entry.user.name,
-        email: entry.user.email
-      }
+        email: entry.user.email,
+      },
     };
   }
-  
+
   return formattedEntry;
-} 
+}

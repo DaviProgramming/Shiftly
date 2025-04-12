@@ -10,4 +10,4 @@ reportRouter.get('/weekly/:userId', ReportController.getWeeklyReport);
 
 reportRouter.get('/monthly/:userId', ReportController.getMonthlyReport);
 
-export default reportRouter; 
+export default reportRouter;

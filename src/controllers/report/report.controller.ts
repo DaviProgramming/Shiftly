@@ -8,7 +8,7 @@ export class ReportController {
   getWeeklyReport: RequestHandler = catchAsync(async (req, res) => {
     const userId = req.params.userId;
     let startDate: Date;
-    
+
     if (req.query.startDate) {
       startDate = new Date(req.query.startDate as string);
     } else {
@@ -19,7 +19,7 @@ export class ReportController {
     }
 
     const report = await ReportService.getWeeklyReport(userId, startDate);
-    
+
     res.status(StatusCode.OK).json({
       message: 'Relatório semanal gerado com sucesso',
       data: formatWeeklyReport(report),
@@ -30,7 +30,7 @@ export class ReportController {
     const userId = req.params.userId;
     let year: number;
     let month: number;
-    
+
     if (req.query.year && req.query.month) {
       year = parseInt(req.query.year as string);
       month = parseInt(req.query.month as string);
@@ -41,7 +41,7 @@ export class ReportController {
     }
 
     const report = await ReportService.getMonthlyReport(userId, year, month);
-    
+
     res.status(StatusCode.OK).json({
       message: 'Relatório mensal gerado com sucesso',
       data: formatMonthlyReport(report),
@@ -49,4 +49,4 @@ export class ReportController {
   });
 }
 
-export default new ReportController(); 
+export default new ReportController();

@@ -20,25 +20,29 @@ export class ReportService {
       firstCheckIn: null,
       lastCheckOut: null,
       hoursWorked: 0,
-      status: 'ausente'
+      status: 'ausente',
     };
   }
 
-  private processDailySummaries(dailyData: DailyTimeRecord[], startDate: Date, endDate: Date): DaySummary[] {
+  private processDailySummaries(
+    dailyData: DailyTimeRecord[],
+    startDate: Date,
+    endDate: Date
+  ): DaySummary[] {
     const dailySummaries: DaySummary[] = [];
     const dateMap = new Map();
 
     dailyData.forEach(day => {
       const date = new Date(day.day);
       const formattedDate = this.formatDate(date);
-      
+
       dateMap.set(formattedDate, {
         date: formattedDate,
         dayOfWeek: this.getWeekDayName(date),
         firstCheckIn: day.first_check_in ? new Date(day.first_check_in) : null,
         lastCheckOut: day.last_check_out ? new Date(day.last_check_out) : null,
         hoursWorked: Number(day.hours_worked) || 0,
-        status: day.first_check_in && day.last_check_out ? 'presente' : 'incompleto'
+        status: day.first_check_in && day.last_check_out ? 'presente' : 'incompleto',
       });
     });
 
@@ -76,7 +80,11 @@ export class ReportService {
     endDate.setHours(23, 59, 59, 999);
 
     const dailyData = await TimeEntryRepository.getDailySummary(userId, startDate, endDate);
-    const dailySummaries = this.processDailySummaries(dailyData as unknown as DailyTimeRecord[], startDate, endDate);
+    const dailySummaries = this.processDailySummaries(
+      dailyData as unknown as DailyTimeRecord[],
+      startDate,
+      endDate
+    );
 
     let totalHoursWorked = 0;
     let daysPresent = 0;
@@ -96,7 +104,7 @@ export class ReportService {
       totalHoursWorked,
       daysPresent,
       daysAbsent,
-      dailySummaries
+      dailySummaries,
     };
   }
 
@@ -108,12 +116,16 @@ export class ReportService {
 
     const startDate = new Date(year, month - 1, 1);
     startDate.setHours(0, 0, 0, 0);
-    
+
     const endDate = new Date(year, month, 0);
     endDate.setHours(23, 59, 59, 999);
 
     const dailyData = await TimeEntryRepository.getDailySummary(userId, startDate, endDate);
-    const dailySummaries = this.processDailySummaries(dailyData as unknown as DailyTimeRecord[], startDate, endDate);
+    const dailySummaries = this.processDailySummaries(
+      dailyData as unknown as DailyTimeRecord[],
+      startDate,
+      endDate
+    );
 
     let totalHoursWorked = 0;
     let daysPresent = 0;
@@ -134,9 +146,9 @@ export class ReportService {
       daysPresent,
       daysAbsent,
       totalDaysInMonth: dailySummaries.length,
-      dailySummaries
+      dailySummaries,
     };
   }
 }
 
-export default new ReportService(); 
+export default new ReportService();

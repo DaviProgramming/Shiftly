@@ -18,10 +18,10 @@ async function runSeed(seedFile: string): Promise<void> {
 async function runAllSeeds(): Promise<void> {
   try {
     logger.info('Iniciando execução de todas as seeds...');
-    
+
     await runSeed('user.seeds.ts');
     await runSeed('time-entry.seeds.ts');
-    
+
     logger.info('Todas as seeds foram executadas com sucesso!');
   } catch (error) {
     logger.info(`Erro durante a execução das seeds: ${error}`);
@@ -33,4 +33,4 @@ if (require.main === module) {
   runAllSeeds();
 }
 
-export { runAllSeeds }; 
+export { runAllSeeds };

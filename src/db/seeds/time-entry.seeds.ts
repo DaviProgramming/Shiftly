@@ -18,21 +18,21 @@ async function seed() {
     }
 
     const now = new Date();
-    
+
     const entrada = new Date(now);
     entrada.setHours(8, 0, 0, 0);
-    
+
     const saidaAlmoco = new Date(now);
     saidaAlmoco.setHours(12, 0, 0, 0);
-    
+
     const entradaAlmoco = new Date(now);
     entradaAlmoco.setHours(13, 0, 0, 0);
-    
+
     const saida = new Date(now);
     saida.setHours(17, 0, 0, 0);
 
     const timeEntriesData = [];
-    
+
     timeEntriesData.push(
       {
         user_id: funcionario.id,
@@ -67,21 +67,21 @@ async function seed() {
     for (let i = 1; i <= 5; i++) {
       const dia = new Date(now);
       dia.setDate(dia.getDate() - i);
-      
+
       if (dia.getDay() === 0 || dia.getDay() === 6) continue;
-      
+
       const entradaDia = new Date(dia);
       entradaDia.setHours(8, 0, 0, 0);
-      
+
       const saidaAlmocoDia = new Date(dia);
       saidaAlmocoDia.setHours(12, 0, 0, 0);
-      
+
       const entradaAlmocoDia = new Date(dia);
       entradaAlmocoDia.setHours(13, 0, 0, 0);
-      
+
       const saidaDia = new Date(dia);
       saidaDia.setHours(17, 0, 0, 0);
-      
+
       timeEntriesData.push(
         {
           user_id: funcionario.id,

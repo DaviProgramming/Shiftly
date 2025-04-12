@@ -42,10 +42,7 @@ export class TimeEntryRepository {
       .select()
       .from(timeEntries)
       .where(
-        and(
-          eq(timeEntries.user_id, userId),
-          between(timeEntries.timestamp, startDate, endDate)
-        )
+        and(eq(timeEntries.user_id, userId), between(timeEntries.timestamp, startDate, endDate))
       )
       .orderBy(timeEntries.timestamp);
 
@@ -61,10 +58,7 @@ export class TimeEntryRepository {
       .select()
       .from(timeEntries)
       .where(
-        and(
-          eq(timeEntries.user_id, userId),
-          between(timeEntries.timestamp, startDate, endDate)
-        )
+        and(eq(timeEntries.user_id, userId), between(timeEntries.timestamp, startDate, endDate))
       )
       .orderBy(timeEntries.timestamp);
 
