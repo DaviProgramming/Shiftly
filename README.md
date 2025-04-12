@@ -9,7 +9,6 @@
 - 📊 Relatórios semanais/mensais por usuário
 - 📁 Exportação de dados em **CSV** e **PDF**
 - 🧪 Testes automatizados (unitários e de integração)
-- ⏰ Tarefas automáticas com `node-cron` (ex: envio de relatórios)
 
 ---
 
