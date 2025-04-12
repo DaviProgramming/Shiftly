@@ -1,18 +1,24 @@
-
-import express from 'express'
-
-import { Router, Request, Response } from 'express';
+import express, { ErrorRequestHandler, RequestHandler } from 'express';
+import routes from '@/routes/router';
+import { errorHandler, notFoundHandler } from '@/middlewares/error-handler.middleware';
+import appConfig from '@/configs/app.config';
+import { logger } from '@/utils/logger.utils';
+import { apiLimiter } from '@/middlewares/rate-limit.middleware';
 
 const app = express();
 
-const route = Router()
+app.use(express.json());
 
-app.use(express.json())
+app.use(apiLimiter);
 
-route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'hello world with Typescript' })
-})
+app.use(routes);
 
-app.use(route)
+app.use(notFoundHandler as RequestHandler);
 
-app.listen(3333, () => 'server running on port 3333')
+app.use(errorHandler as ErrorRequestHandler);
+
+app.listen(appConfig.port, () => {
+  logger.info('🚀 Servidor iniciado com sucesso!');
+  logger.info(`📡 URL: http://localhost:${appConfig.port}`);
+  logger.info(`⏰ Iniciado em: ${new Date().toLocaleString()}`);
+});
