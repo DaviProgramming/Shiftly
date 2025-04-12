@@ -62,10 +62,10 @@ export class ReportController {
     }
 
     const csv = await ReportService.generateWeeklyReportCSV(userId, startDate);
-    
+
     res.setHeader('Content-Type', 'text/csv');
     res.setHeader('Content-Disposition', `attachment; filename="relatorio_semanal_${userId}.csv"`);
-    
+
     res.status(StatusCode.OK).send(csv);
   });
 
@@ -84,10 +84,13 @@ export class ReportController {
     }
 
     const csv = await ReportService.generateMonthlyReportCSV(userId, year, month);
-    
+
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename="relatorio_mensal_${userId}_${month}_${year}.csv"`);
-    
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="relatorio_mensal_${userId}_${month}_${year}.csv"`
+    );
+
     res.status(StatusCode.OK).send(csv);
   });
 }

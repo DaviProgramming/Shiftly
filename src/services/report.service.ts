@@ -1,7 +1,13 @@
 import { NotFoundError } from '@/utils/app.error';
 import UserRepository from '@/repositories/user.repository';
 import TimeEntryRepository from '@/repositories/time-entry.repository';
-import { DaySummary, WeeklyReport, MonthlyReport, DailyTimeRecord, CSVReportData } from '@/types/report.types';
+import {
+  DaySummary,
+  WeeklyReport,
+  MonthlyReport,
+  DailyTimeRecord,
+  CSVReportData,
+} from '@/types/report.types';
 import { Parser } from 'json2csv';
 
 export class ReportService {
@@ -48,6 +54,7 @@ export class ReportService {
     });
 
     const currentDate = new Date(startDate);
+
     while (currentDate <= endDate) {
       if (currentDate.getDay() !== 0 && currentDate.getDay() !== 6) {
         const formattedDate = this.formatDate(currentDate);
@@ -65,6 +72,7 @@ export class ReportService {
 
   async getWeeklyReport(userId: string, startDate: Date): Promise<WeeklyReport> {
     const user = await UserRepository.findById(userId);
+
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
     }
@@ -111,6 +119,7 @@ export class ReportService {
 
   async getMonthlyReport(userId: string, year: number, month: number): Promise<MonthlyReport> {
     const user = await UserRepository.findById(userId);
+    
     if (!user) {
       throw new NotFoundError('Usuário não encontrado');
     }
@@ -153,37 +162,51 @@ export class ReportService {
 
   async generateWeeklyReportCSV(userId: string, startDate: Date): Promise<string> {
     const report = await this.getWeeklyReport(userId, startDate);
-    
+
     const csvData: CSVReportData[] = report.dailySummaries.map(day => ({
       Data: day.date,
       DiaDaSemana: day.dayOfWeek,
       PrimeiroRegistro: day.firstCheckIn ? day.firstCheckIn.toLocaleTimeString('pt-BR') : '',
       UltimoRegistro: day.lastCheckOut ? day.lastCheckOut.toLocaleTimeString('pt-BR') : '',
       HorasTrabalhadas: day.hoursWorked,
-      Status: day.status
-    }));
-    
-    const fields = ['Data', 'DiaDaSemana', 'PrimeiroRegistro', 'UltimoRegistro', 'HorasTrabalhadas', 'Status'];
-    const parser = new Parser({ fields });
-    
-    return parser.parse(csvData);
-  }
-  
-  async generateMonthlyReportCSV(userId: string, year: number, month: number): Promise<string> {
-    const report = await this.getMonthlyReport(userId, year, month);
-    
-    const csvData: CSVReportData[] = report.dailySummaries.map(day => ({
-      Data: day.date,
-      DiaDaSemana: day.dayOfWeek,
-      PrimeiroRegistro: day.firstCheckIn ? day.firstCheckIn.toLocaleTimeString('pt-BR') : '',
-      UltimoRegistro: day.lastCheckOut ? day.lastCheckOut.toLocaleTimeString('pt-BR') : '',
-      HorasTrabalhadas: day.hoursWorked,
-      Status: day.status
+      Status: day.status,
     }));
 
-    const fields = ['Data', 'DiaDaSemana', 'PrimeiroRegistro', 'UltimoRegistro', 'HorasTrabalhadas', 'Status'];
+    const fields = [
+      'Data',
+      'DiaDaSemana',
+      'PrimeiroRegistro',
+      'UltimoRegistro',
+      'HorasTrabalhadas',
+      'Status',
+    ];
     const parser = new Parser({ fields });
-    
+
+    return parser.parse(csvData);
+  }
+
+  async generateMonthlyReportCSV(userId: string, year: number, month: number): Promise<string> {
+    const report = await this.getMonthlyReport(userId, year, month);
+
+    const csvData: CSVReportData[] = report.dailySummaries.map(day => ({
+      Data: day.date,
+      DiaDaSemana: day.dayOfWeek,
+      PrimeiroRegistro: day.firstCheckIn ? day.firstCheckIn.toLocaleTimeString('pt-BR') : '',
+      UltimoRegistro: day.lastCheckOut ? day.lastCheckOut.toLocaleTimeString('pt-BR') : '',
+      HorasTrabalhadas: day.hoursWorked,
+      Status: day.status,
+    }));
+
+    const fields = [
+      'Data',
+      'DiaDaSemana',
+      'PrimeiroRegistro',
+      'UltimoRegistro',
+      'HorasTrabalhadas',
+      'Status',
+    ];
+    const parser = new Parser({ fields });
+
     return parser.parse(csvData);
   }
 }

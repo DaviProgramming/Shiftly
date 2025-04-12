@@ -37,7 +37,6 @@ export interface DailyTimeRecord {
   hours_worked: number | string;
 }
 
-
 export interface CSVReportData {
   Data: string;
   DiaDaSemana: string;
