@@ -1,11 +1,17 @@
 import appConfig from '@/configs/app.config';
 import { Environment } from '@/enums/environment.enum';
 
+interface ErrorDetail {
+  message: string;
+  field?: string;
+  code?: string;
+}
+
 export class AppError extends Error {
   statusCode: number;
-  errors?: any[];
+  errors?: ErrorDetail[];
 
-  constructor(message: string, statusCode: number = 400, errors?: any[]) {
+  constructor(message: string, statusCode: number = 400, errors?: ErrorDetail[]) {
     super(message);
     this.statusCode = statusCode;
     this.errors = errors;
@@ -18,7 +24,7 @@ export class AppError extends Error {
 }
 
 export class BadRequestError extends AppError {
-  constructor(message: string = 'Requisição inválida', errors?: any[]) {
+  constructor(message: string = 'Requisição inválida', errors?: ErrorDetail[]) {
     super(message, 400, errors);
   }
 }
@@ -42,7 +48,7 @@ export class NotFoundError extends AppError {
 }
 
 export class ValidationError extends AppError {
-  constructor(message: string = 'Erro de validação', errors: any[] = []) {
+  constructor(message: string = 'Erro de validação', errors: ErrorDetail[] = []) {
     super(message, 400, errors);
   }
 }
