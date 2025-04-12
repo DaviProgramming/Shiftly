@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import authRoutes from '@/routes/auth/auth.routes';
 import shiftRoutes from '@/routes/shift/shift.routes';
-import reportRoutes from '@/routes/report.routes';
+import reportRoutes from '@/routes/report/report.routes';
 
 const router: Router = Router();
 
