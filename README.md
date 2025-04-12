@@ -7,8 +7,6 @@
 - ✅ Cadastro e login de funcionários
 - 🕒 Registro de **check-in** e **check-out**
 - 📊 Relatórios semanais/mensais por usuário
-- 🧑‍💼 Painel de administrador com visão geral dos registros
-- 📍 Suporte opcional à geolocalização (coleta no momento do ponto)
 - 📁 Exportação de dados em **CSV** e **PDF**
 - 🧪 Testes automatizados (unitários e de integração)
 - ⏰ Tarefas automáticas com `node-cron` (ex: envio de relatórios)
