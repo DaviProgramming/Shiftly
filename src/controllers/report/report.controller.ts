@@ -47,6 +47,49 @@ export class ReportController {
       data: formatMonthlyReport(report),
     });
   });
+
+  getWeeklyReportCSV: RequestHandler = catchAsync(async (req, res) => {
+    const userId = req.params.userId;
+    let startDate: Date;
+
+    if (req.query.startDate) {
+      startDate = new Date(req.query.startDate as string);
+    } else {
+      startDate = new Date();
+      const day = startDate.getDay();
+      const diff = startDate.getDate() - day + (day === 0 ? -6 : 1);
+      startDate = new Date(startDate.setDate(diff));
+    }
+
+    const csv = await ReportService.generateWeeklyReportCSV(userId, startDate);
+    
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="relatorio_semanal_${userId}.csv"`);
+    
+    res.status(StatusCode.OK).send(csv);
+  });
+
+  getMonthlyReportCSV: RequestHandler = catchAsync(async (req, res) => {
+    const userId = req.params.userId;
+    let year: number;
+    let month: number;
+
+    if (req.query.year && req.query.month) {
+      year = parseInt(req.query.year as string);
+      month = parseInt(req.query.month as string);
+    } else {
+      const currentDate = new Date();
+      year = currentDate.getFullYear();
+      month = currentDate.getMonth() + 1;
+    }
+
+    const csv = await ReportService.generateMonthlyReportCSV(userId, year, month);
+    
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="relatorio_mensal_${userId}_${month}_${year}.csv"`);
+    
+    res.status(StatusCode.OK).send(csv);
+  });
 }
 
 export default new ReportController();

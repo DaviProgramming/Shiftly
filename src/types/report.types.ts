@@ -36,3 +36,13 @@ export interface DailyTimeRecord {
   last_check_out: string | null;
   hours_worked: number | string;
 }
+
+
+export interface CSVReportData {
+  Data: string;
+  DiaDaSemana: string;
+  PrimeiroRegistro: string;
+  UltimoRegistro: string;
+  HorasTrabalhadas: number | string;
+  Status: string;
+}

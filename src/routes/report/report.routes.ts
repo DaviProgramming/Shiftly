@@ -7,7 +7,9 @@ const reportRouter = Router();
 reportRouter.use(authMiddleware);
 
 reportRouter.get('/weekly/:userId', ReportController.getWeeklyReport);
+reportRouter.get('/weekly/:userId/csv', ReportController.getWeeklyReportCSV);
 
 reportRouter.get('/monthly/:userId', ReportController.getMonthlyReport);
+reportRouter.get('/monthly/:userId/csv', ReportController.getMonthlyReportCSV);
 
 export default reportRouter;
