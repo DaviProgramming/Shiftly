@@ -8,7 +8,6 @@
 - 🕒 Registro de **check-in** e **check-out**
 - 📊 Relatórios semanais/mensais por usuário
 - 📁 Exportação de dados em **CSV** e **PDF**
-- 🧪 Testes automatizados (unitários e de integração)
 
 ---
 
@@ -19,7 +18,6 @@
 - **Drizzle ORM** + **PostgreSQL**
 - **Zod** (validação de dados)
 - **JWT** (autenticação segura)
-- **Vitest** (testes)
 - **dotenv**, **cors**, **helmet**, etc.
 
 ---
